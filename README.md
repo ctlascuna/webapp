@@ -1,16 +1,9 @@
-# webapp
+## My Portfolio - WEBAPP
 
-A new Flutter project.
+## Set Up
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Install [Flutter](https://docs.flutter.dev/get-started/install).
+- Clone the project from Github.
+- Run ```fvm use``` to update fvm flutter version
+- Run the commands ```fvm flutter clear``` and ```fvm flutter pub get```.
+- Launch the web application using ```fvm flutter run```.
