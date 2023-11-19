@@ -72,7 +72,7 @@ class NoteEditor extends HookConsumerWidget {
                   ),
                 ),
                 PortfolioButton(
-                  text: 'Save',
+                  text: 'SAVE',
                   onPressed: () async {
                     final delta = controller.document.toDelta();
                     final jsonString = jsonEncode(delta.toJson());

@@ -23,4 +23,9 @@ class DailyJournalRepositoryImpl implements DailyJournalRepository {
   Future<void> deleteNote({required String noteId}) async {
     _remoteSource.deleteNote(noteId: noteId);
   }
+
+  @override
+  Future<void> generateMyNotes() async {
+    await _remoteSource.generateMyNotes();
+  }
 }
