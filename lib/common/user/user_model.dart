@@ -33,7 +33,7 @@ class UserModel {
     return UserModel(
       accessToken: json['accessToken'] as String,
       username: json['username'] as String,
-      id: json['user_id'] as String,
+      id: json['userId'] as String,
     );
   }
 }

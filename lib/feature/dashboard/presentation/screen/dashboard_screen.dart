@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:webapp/common/theme/themes.dart';
 
-class DashboardScreen extends HookConsumerWidget {
+import 'package:webapp/common/component/components.dart';
+
+class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
-      backgroundColor: portfolioBackground,
-      body: Container(),
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: PortfolioAppBar(),
+      body: Stack(
+        children: [
+          PortfolioBackgroundContainer(),
+        ],
+      ),
     );
   }
 }

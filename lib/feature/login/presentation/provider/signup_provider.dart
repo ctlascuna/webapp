@@ -46,6 +46,8 @@ class SignupNotifier extends StateNotifier<SignupEntity> {
           .read(secureStorageServiceProvider.notifier)
           .storeUsername(response.username);
 
+      ref.read(graphQLService.notifier).updateBearerToken(response.accessToken);
+
       return '';
     }
   }
