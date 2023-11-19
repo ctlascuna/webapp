@@ -6,4 +6,5 @@ abstract class DailyJournalRemoteSource {
   });
   Future<List<NoteEntity>?> getMyNotes();
   Future<void> deleteNote({required String noteId});
+  Future<void> generateMyNotes();
 }

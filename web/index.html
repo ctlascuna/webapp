@@ -40,6 +40,18 @@
   <script src="flutter.js" defer></script>
 </head>
 <body>
+  <script defer src="/__/firebase/8.7.0/firebase-app.js"></script>
+  <script defer src="/__/firebase/8.7.0/firebase-analytics.js"></script>
+  <script defer src="/__/firebase/init.js"></script>
+  <script defer src="../config.js"></script>
+  <script>
+    var OneSignal = window.OneSignal || [];
+    OneSignal.push(function () {
+      OneSignal.init({
+        appId: "c0d27123-b2b0-4a1d-b655-a77025848a78",
+      });
+    });
+  </script>
   <script>
     window.addEventListener('load', function(ev) {
       // Download main.dart.js

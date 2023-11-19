@@ -23,4 +23,8 @@ class DailyJournalUseCase {
   Future<void> deleteNote({required String noteId}) async {
     await _repository.deleteNote(noteId: noteId);
   }
+
+  Future<void> generateMyNotes() async {
+    await _repository.generateMyNotes();
+  }
 }

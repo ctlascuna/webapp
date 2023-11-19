@@ -16,6 +16,10 @@ class DailyJournalNotifier extends StateNotifier<List<NoteEntity>> {
     final note = ref.read(noteProvider);
     final response = await dailyJournalUseCase.addNote(note: note);
 
+    if (response != null) {
+      ref.read(noteProvider.notifier).onStateChanged(response);
+    }
+
     return response == null ? false : true;
   }
 
@@ -29,6 +33,13 @@ class DailyJournalNotifier extends StateNotifier<List<NoteEntity>> {
 
   Future<void> deleteNote({required String noteId}) async {
     await dailyJournalUseCase.deleteNote(noteId: noteId);
+    final updatedList = state;
+    updatedList.removeWhere((note) => note.noteId == noteId);
+    state = updatedList;
+  }
+
+  Future<void> generateMyNotes() async {
+    await dailyJournalUseCase.generateMyNotes();
   }
 }
 

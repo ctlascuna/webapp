@@ -107,4 +107,21 @@ class DailyJournalRemoteSourceImpl implements DailyJournalRemoteSource {
       await _client.mutate(options);
     } on GraphQLError catch (_) {}
   }
+
+  @override
+  Future<void> generateMyNotes() async {
+    try {
+      const generateMyNotesQuery = r'''
+        query generateMyNotesPdf  {
+          generateMyNotesPdf 
+        }
+      ''';
+
+      final options = QueryOptions(
+        document: gql(generateMyNotesQuery),
+      );
+
+      await _client.query(options);
+    } on GraphQLError catch (_) {}
+  }
 }

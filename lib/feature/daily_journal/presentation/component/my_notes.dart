@@ -23,6 +23,9 @@ class MyNotes extends HookConsumerWidget {
           itemCount: state.length,
           itemBuilder: (context, index) {
             final note = state.reversed.toList()[index];
+
+            final isSelected = ref.watch(noteProvider).noteId == note.noteId;
+
             return Column(
               children: [
                 InkWell(
@@ -46,26 +49,28 @@ class MyNotes extends HookConsumerWidget {
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
-                        IconButton(
-                          icon: const Icon(
-                            Icons.delete,
-                            color: Colors.red,
+                        if (isSelected) ...[
+                          IconButton(
+                            icon: const Icon(
+                              Icons.delete_forever_rounded,
+                              color: Colors.red,
+                            ),
+                            onPressed: () async {
+                              await notifier.deleteNote(
+                                  noteId: note.noteId ?? '');
+                              if (note.noteId ==
+                                  ref.read(noteProvider).noteId) {
+                                ref.read(noteProvider.notifier).reset();
+                              }
+                            },
                           ),
-                          onPressed: () async {
-                            await notifier.deleteNote(
-                                noteId: note.noteId ?? '');
-                            await notifier.getMyNotes();
-                            if (note.noteId == ref.read(noteProvider).noteId) {
-                              ref.read(noteProvider.notifier).reset();
-                            }
-                          },
-                        ),
+                        ],
                       ],
                     ),
                   ).asGlass(
                     clipBorderRadius:
                         const BorderRadius.all(Radius.circular(12)),
-                    tintColor: portfolioGreen,
+                    tintColor: isSelected ? portfolioBlue : portfolioBlack,
                   ),
                 ),
                 const SizedBox(height: 25),
