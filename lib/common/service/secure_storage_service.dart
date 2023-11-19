@@ -15,6 +15,7 @@ class SecureStorageService extends SecureStorageServiceNotifier {
   static const _usernameKey = 'username';
 
   Future<void> storeToken(String token) async {
+    await deleteToken();
     await _secureStorage.write(key: _tokenKey, value: token);
   }
 
@@ -34,7 +35,7 @@ class SecureStorageService extends SecureStorageServiceNotifier {
     return _secureStorage.read(key: _userIDKey);
   }
 
-  Future<void> deteUserID() async {
+  Future<void> deleteUserID() async {
     await _secureStorage.delete(key: _userIDKey);
   }
 

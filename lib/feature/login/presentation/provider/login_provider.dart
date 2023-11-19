@@ -1,4 +1,5 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:webapp/common/service/local_storage_service.dart';
 import 'package:webapp/common/service/services.dart';
 import 'package:webapp/common/user/users.dart';
 import 'package:webapp/feature/login/dependency_injection/dependency_injections.dart';
@@ -35,6 +36,9 @@ class LoginNotifier extends StateNotifier<LoginEntity> {
       ref
           .read(secureStorageServiceProvider.notifier)
           .storeUsername(response.username);
+
+      ref.read(graphQLService.notifier).updateBearerToken(response.accessToken);
+      ref.read(localStorageService.notifier).setLoginStatus(value: true);
 
       return '';
     }

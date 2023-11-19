@@ -19,7 +19,7 @@ class LoginRemoteSourceImpl implements LoginRemoteSource {
         query login ($username: String!, $password: String!) {
           login(username: $username, password: $password) {
             accessToken
-            user_id
+            userId
             username
           }
         }
@@ -60,7 +60,7 @@ class LoginRemoteSourceImpl implements LoginRemoteSource {
             password: $password
           ) {
             accessToken
-            user_id
+            userId
             username
           }
         }

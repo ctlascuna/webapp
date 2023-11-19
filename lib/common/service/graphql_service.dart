@@ -17,6 +17,19 @@ class GraphQLService extends StateNotifier<GraphQLClient> {
     );
   }
 
+  void updateBearerToken(String token) {
+    if (token.isEmpty) return;
+
+    state = state.copyWith(
+      link: HttpLink(
+        'http://localhost:3000/graphql',
+        defaultHeaders: {
+          'Authorization': token,
+        },
+      ),
+    );
+  }
+
   GraphQLClient get client => state;
 }
 
