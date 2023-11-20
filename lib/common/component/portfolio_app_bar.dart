@@ -3,7 +3,9 @@ import 'package:beamer/beamer.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:webapp/common/provider/providers.dart';
-import 'package:webapp/common/route/location/daily_journal/daily_journal_location.dart';
+import 'package:webapp/common/route/location/about_me/about_me.dart';
+import 'package:webapp/common/route/location/contact_me/contact_me.dart';
+import 'package:webapp/common/route/location/daily_journal/daily_journal.dart';
 import 'package:webapp/common/route/location/dashboard/dashboard.dart';
 import 'package:webapp/common/theme/themes.dart';
 
@@ -59,6 +61,42 @@ class PortfolioAppBar extends HookConsumerWidget
                 ),
               ),
             ),
+            Expanded(
+              child: GestureDetector(
+                onTap: () {
+                  notifier.onMenuChanged(2);
+                  Beamer.of(context).beamToNamed(AboutMeLocaton.route);
+                },
+                child: Center(
+                  child: Text(
+                    'ABOUT ME',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w900,
+                      color: state == 2 ? portfolioBlue : portfolioGreen,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              child: GestureDetector(
+                onTap: () {
+                  notifier.onMenuChanged(3);
+                  Beamer.of(context).beamToNamed(ContactMeLocation.route);
+                },
+                child: Center(
+                  child: Text(
+                    'CONTACT ME',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w900,
+                      color: state == 3 ? portfolioBlue : portfolioGreen,
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
         Positioned(
@@ -66,8 +104,8 @@ class PortfolioAppBar extends HookConsumerWidget
           right: 60,
           bottom: 0,
           child: Container(
-            height: 3, // Height of the divider
-            color: portfolioGreen, // Color of the divider
+            height: 3,
+            color: portfolioGreen,
           ),
         ),
       ],

@@ -15,7 +15,7 @@ void main() {
     });
 
     test('should create an instance of SignupEntity.initial', () {
-      final signupEntity = SignupEntity.inital();
+      const signupEntity = SignupEntity.inital();
 
       expect(signupEntity, isA<SignupEntity>());
       expect(signupEntity.username, '');

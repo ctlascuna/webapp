@@ -32,29 +32,31 @@
   <title>webapp</title>
   <link rel="manifest" href="manifest.json">
 
+
+
   <script>
     // The value below is injected by flutter build, do not touch.
     const serviceWorkerVersion = null;
   </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
-</head>
-<body>
-  <script defer src="/__/firebase/8.7.0/firebase-app.js"></script>
-  <script defer src="/__/firebase/8.7.0/firebase-analytics.js"></script>
-  <script defer src="/__/firebase/init.js"></script>
-  <script defer src="../config.js"></script>
+  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
   <script>
-    var OneSignal = window.OneSignal || [];
-    OneSignal.push(function () {
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(function (OneSignal) {
       OneSignal.init({
         appId: "c0d27123-b2b0-4a1d-b655-a77025848a78",
+      
       });
     });
   </script>
+  
+</head>
+<body>
+
   <script>
     window.addEventListener('load', function(ev) {
-      // Download main.dart.js
+ 
       _flutter.loader.loadEntrypoint({
         serviceWorker: {
           serviceWorkerVersion: serviceWorkerVersion,
