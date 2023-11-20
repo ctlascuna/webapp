@@ -1,15 +1,23 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:webapp/common/component/components.dart';
+import 'package:webapp/common/provider/providers.dart';
 import 'package:webapp/common/theme/themes.dart';
-import 'package:webapp/feature/daily_journal/presentation/view_model/daily_journal_provider.dart';
+import 'package:webapp/feature/daily_journal/presentation/view_model/providers.dart';
 
 class DashboardScreen extends HookConsumerWidget {
   const DashboardScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref
+          .read(menuProvider.notifier)
+          .onRefresh(Beamer.of(context).currentBeamLocation);
+    });
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: const PortfolioAppBar(),

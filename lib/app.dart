@@ -1,4 +1,5 @@
 import 'package:beamer/beamer.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_quill/translations.dart';
@@ -16,12 +17,30 @@ class App extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final analytics = FirebaseAnalytics.instance;
+    final observer = FirebaseAnalyticsObserver(
+      analytics: analytics,
+      routeFilter: (route) {
+        if (route?.settings.name == null ||
+            (route?.settings.name?.isEmpty ?? false)) {
+          return false;
+        }
+
+        return defaultRouteFilter(route);
+      },
+    );
+
+    analytics.logEvent(
+        name: 'page_view', parameters: {'page_name': '/your-page-path'});
     final routerDelegate = useMemoized(() {
       return BeamerDelegate(
         initialPath: LoginLocation.route,
         locationBuilder: mainLocationBuilder,
         transitionDelegate: const NoAnimationTransitionDelegate(),
         beamBackTransitionDelegate: const NoAnimationTransitionDelegate(),
+        navigatorObservers: [
+          observer,
+        ],
         guards: [
           BeamGuard(
             pathPatterns: [
